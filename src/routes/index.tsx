@@ -1,24 +1,57 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
+import { Contact } from "@/components/site/Contact";
+import { CtaBanner } from "@/components/site/CtaBanner";
+import { Faq } from "@/components/site/Faq";
+import { Footer } from "@/components/site/Footer";
+import { Header } from "@/components/site/Header";
+import { Hero } from "@/components/site/Hero";
+import { Promises } from "@/components/site/Promises";
+import { Readiness } from "@/components/site/Readiness";
+import { Reviews } from "@/components/site/Reviews";
+import { Showcase } from "@/components/site/Showcase";
+import { Spotlight } from "@/components/site/Spotlight";
+import { Team } from "@/components/site/Team";
+import { Testimonials } from "@/components/site/Testimonials";
+
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "Collingwood Press | Get Your Book Shelf-Ready" },
+      {
+        name: "description",
+        content:
+          "You wrote the book. Collingwood Press handles editing, cover design, typesetting and distribution so your manuscript arrives shelf-ready.",
+      },
+      { property: "og:title", content: "Collingwood Press | Get Your Book Shelf-Ready" },
+      {
+        property: "og:description",
+        content:
+          "Independent publishing services: editing, cover design, typesetting, ISBN, distribution and launch support for authors.",
+      },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <div className="bg-background min-h-dvh">
+      <Header />
+      <main>
+        <Hero />
+        <Testimonials />
+        <Promises />
+        <Readiness />
+        <Spotlight />
+        <Team />
+        <Showcase />
+        <Reviews />
+        <CtaBanner />
+        <Faq />
+        <Contact />
+      </main>
+      <Footer />
     </div>
   );
 }
